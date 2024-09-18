@@ -16,7 +16,7 @@ jobs:
   sbt:
     name: sbt publish
     runs-on: ubuntu-22.04
-    if: github.repository == 'ing-bank/baker'
+    if: github.repository == 'bekiroguz/baker'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
