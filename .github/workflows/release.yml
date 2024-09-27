@@ -25,9 +25,14 @@ jobs:
       - name: Check release tag format
         run: |
           if [[ ! "${{ inputs.release_tag }}" =~ ^v[0-9]+(\.[0-9]+)*(-[A-Za-z0-9]+)?$ ]]; then
-            echo "Error: release_tag must start with 'v' followed by a version number, optionally with a suffix like -RC1."
+            echo "Error: release_tag must start with 'v' followed by a version number i.e. v4.1.0, optionally with a suffix like -RC1."
             exit 1
           fi
+
+      - name: Set Git user name and email
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: Create release tag and push (triggers the CI run)
         run: |-
